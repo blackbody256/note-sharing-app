@@ -1,0 +1,172 @@
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.notes-app .header {
+    background-color: #fff;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.dark-mode .notes-app .header {
+    background-color: #1f1f1f;
+    border-bottom-color: #444;
+}
+
+.notes-app .create-card {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+}
+
+.dark-mode .notes-app .create-card {
+    background-color: #2d2d2d;
+    border-color: #444;
+}
+
+.notes-app .note-card {
+    border: 1px solid #e0e0e0;
+}
+
+.dark-mode .notes-app .note-card {
+    border-color: #444;
+}
+
+.notes-app .cheatsheet-details {
+    background-color: #f8f9fa;
+    border: 1px solid #e0e0e0;
+}
+
+.dark-mode .notes-app .cheatsheet-details {
+    background-color: #2d2d2d;
+    border-color: #444;
+}
+
+.notes-app .search-input {
+    background-color: #f1f3f4;
+    border: 1px solid #e0e0e0;
+}
+
+.dark-mode .notes-app .search-input {
+    background-color: #2d2d2d;
+    border-color: #444;
+    color: #ffffff;
+}
+
+.notes-app .logout-button {
+    background-color: #f1f3f4;
+    color: #5f6368;
+}
+
+.dark-mode .notes-app .logout-button {
+    background-color: #2d2d2d;
+    color: #ffffff;
+}
+
+.notes-app .user-email {
+    color: #5f6368;
+}
+
+.dark-mode .notes-app .user-email {
+    color: #ffffff;
+}
+
+.notes-app .header-title {
+    color: #202124;
+}
+
+.dark-mode .notes-app .header-title {
+    color: #ffffff;
+}
+
+.notes-app .note-count {
+    color: #5f6368;
+}
+
+.dark-mode .notes-app .note-count {
+    color: #ffffff;
+}
+
+.notes-app .empty-title {
+    color: #202124;
+}
+
+.dark-mode .notes-app .empty-title {
+    color: #ffffff;
+}
+
+.notes-app .empty-text {
+    color: #5f6368;
+}
+
+.dark-mode .notes-app .empty-text {
+    color: #aaaaaa;
+}
+
+.notes-app .note-title {
+    color: #202124;
+}
+
+.dark-mode .notes-app .note-title {
+    color: #ffffff;
+}
+
+.notes-app .note-content {
+    color: #5f6368;
+}
+
+.dark-mode .notes-app .note-content {
+    color: #aaaaaa;
+}
+
+.notes-app .note-date {
+    color: #80868b;
+}
+
+.dark-mode .notes-app .note-date {
+    color: #aaaaaa;
+}
+
+.notes-app .action-button {
+    border: none;
+}
+
+.dark-mode .notes-app .action-button {
+    background-color: #444;
+    color: #ffffff;
+}
+
+.notes-app .mode-button-active {
+    background-color: #667eea;
+    color: white;
+}
+
+.dark-mode .notes-app .mode-button-active {
+    background-color: #667eea;
+    color: white;
+}
+
+.notes-app .mode-button-inactive {
+    background-color: rgba(0,0,0,0.05);
+    color: #5f6368;
+}
+
+.dark-mode .notes-app .mode-button-inactive {
+    background-color: #444;
+    color: #ffffff;
+}
+
+.notes-app .preview-title {
+    color: #202124;
+}
+
+.dark-mode .notes-app .preview-title {
+    color: #ffffff;
+}
+
+.notes-app .cheatsheet-summary {
+    color: #5f6368;
+}
+
+.dark-mode .notes-app .cheatsheet-summary {
+    color: #ffffff;
+}
