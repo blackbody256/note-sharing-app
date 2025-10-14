@@ -5,6 +5,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import Login from './components/Login';
 import Notes from './components/Notes';
 import PrivateRoute from './components/PrivateRoute';
+import SharedNoteView from './components/SharedNoteView';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route path="/login" element={<Login />} />
+          
           <Route 
             path="/notes" 
             element={
@@ -20,6 +22,10 @@ function App() {
               </PrivateRoute>
             } 
           />
+          
+          {/* Public route for shared notes */}
+          <Route path="/shared/:shareId" element={<SharedNoteView />} />
+          
           <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
       </AuthProvider>
