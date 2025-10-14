@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { Mail, Lock, User } from 'lucide-react';
+import { Mail, Lock } from 'lucide-react'; // Removed unused User import
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -52,8 +52,8 @@ function Login() {
 
   return (
     <div style={styles.pageContainer}>
-      {/* Left Side - Branding */}
-      <div style={styles.brandingSide}>
+      {/* Left Side - Branding (Hidden on mobile) */}
+      <div style={styles.brandingSide} className="brandingSide">
         <div style={styles.brandingContent}>
           <div style={styles.logoContainer}>
             <div style={styles.logo}>
@@ -88,10 +88,24 @@ function Login() {
       </div>
 
       {/* Right Side - Login Form */}
-      <div style={styles.formSide}>
-        <div style={styles.formContainer}>
+      <div style={styles.formSide} className="formSide">
+        {/* Mobile Logo */}
+        <div style={styles.mobileLogoContainer} className="mobileLogoContainer">
+          <div style={styles.mobileLogo}>
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <line x1="10" y1="9" x2="8" y2="9"/>
+            </svg>
+          </div>
+          <h1 style={styles.mobileBrandTitle}>NoteShare</h1>
+        </div>
+
+        <div style={styles.formContainer} className="formContainer">
           <div style={styles.formHeader}>
-            <h2 style={styles.formTitle}>
+            <h2 style={styles.formTitle} className="formTitle">
               {isSignup ? 'Create Account' : 'Welcome Back'}
             </h2>
             <p style={styles.formSubtitle}>
@@ -122,6 +136,7 @@ function Login() {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   style={styles.input}
+                  className="formInput"
                 />
               </div>
             </div>
@@ -138,6 +153,7 @@ function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   style={styles.input}
+                  className="formInput"
                 />
               </div>
             </div>
@@ -150,6 +166,7 @@ function Login() {
                 ...styles.submitButton,
                 ...(loading && styles.submitButtonDisabled)
               }}
+              className="submitButton"
             >
               {loading ? (
                 <span style={styles.spinner}></span>
@@ -173,6 +190,7 @@ function Login() {
                 setError('');
               }}
               style={styles.toggleButton}
+              className="toggleButton"
             >
               {isSignup ? 'Log In' : 'Sign Up'}
             </button>
@@ -183,7 +201,7 @@ function Login() {
   );
 }
 
-// Evernote-inspired styles
+// Mobile-responsive styles optimized for smartphones
 const styles = {
   pageContainer: {
     display: 'flex',
@@ -191,7 +209,7 @@ const styles = {
     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
   },
 
-  // Left Side - Branding
+  // Left Side - Branding (Hidden on mobile)
   brandingSide: {
     flex: 1,
     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -254,36 +272,64 @@ const styles = {
     fontWeight: 'bold',
   },
 
+  // Mobile Logo (Visible only on mobile)
+  mobileLogoContainer: {
+    display: 'none',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginBottom: '32px',
+    gap: '12px',
+  },
+  mobileLogo: {
+    width: '60px',
+    height: '60px',
+    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    borderRadius: '16px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)',
+  },
+  mobileBrandTitle: {
+    fontSize: '28px',
+    fontWeight: '700',
+    color: '#1a1a1a',
+    margin: 0,
+  },
+
   // Right Side - Form
   formSide: {
     flex: 1,
     display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '40px',
+    padding: '20px',
     backgroundColor: '#fafafa',
+    minHeight: '100vh',
   },
   formContainer: {
     width: '100%',
     maxWidth: '440px',
     backgroundColor: 'white',
     borderRadius: '16px',
-    padding: '48px',
+    padding: '32px 24px',
     boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05), 0 10px 20px rgba(0, 0, 0, 0.1)',
   },
   formHeader: {
-    marginBottom: '32px',
+    marginBottom: '28px',
     textAlign: 'center',
   },
   formTitle: {
-    fontSize: '28px',
+    fontSize: '24px',
     fontWeight: '700',
     color: '#1a1a1a',
     marginBottom: '8px',
   },
   formSubtitle: {
-    fontSize: '15px',
+    fontSize: '14px',
     color: '#666',
+    lineHeight: '1.5',
   },
 
   // Error Banner
@@ -291,23 +337,26 @@ const styles = {
     backgroundColor: '#fee',
     border: '1px solid #fcc',
     borderRadius: '8px',
-    padding: '12px 16px',
-    marginBottom: '24px',
+    padding: '12px 14px',
+    marginBottom: '20px',
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     gap: '10px',
-    fontSize: '14px',
+    fontSize: '13px',
     color: '#c33',
+    lineHeight: '1.4',
   },
   errorIcon: {
-    fontSize: '18px',
+    fontSize: '16px',
+    flexShrink: 0,
+    marginTop: '1px',
   },
 
   // Form Elements
   form: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '24px',
+    gap: '20px',
   },
   inputGroup: {
     display: 'flex',
@@ -326,20 +375,22 @@ const styles = {
   },
   inputIcon: {
     position: 'absolute',
-    left: '16px',
+    left: '14px',
     color: '#999',
     pointerEvents: 'none',
+    flexShrink: 0,
   },
   input: {
     width: '100%',
-    padding: '14px 16px 14px 48px',
-    fontSize: '15px',
+    padding: '14px 14px 14px 44px',
+    fontSize: '16px',
     border: '2px solid #e5e5e5',
     borderRadius: '10px',
     outline: 'none',
     transition: 'all 0.2s',
     backgroundColor: '#fafafa',
     fontFamily: 'inherit',
+    boxSizing: 'border-box',
   },
   submitButton: {
     width: '100%',
@@ -354,6 +405,10 @@ const styles = {
     transition: 'transform 0.2s, box-shadow 0.2s',
     marginTop: '8px',
     boxShadow: '0 4px 12px rgba(102, 126, 234, 0.4)',
+    minHeight: '48px', // iOS touch target
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   submitButtonDisabled: {
     opacity: 0.7,
@@ -371,12 +426,12 @@ const styles = {
 
   // Toggle Section
   toggleSection: {
-    marginTop: '32px',
+    marginTop: '28px',
   },
   divider: {
     position: 'relative',
     textAlign: 'center',
-    marginBottom: '24px',
+    marginBottom: '20px',
   },
   dividerText: {
     backgroundColor: 'white',
@@ -404,10 +459,11 @@ const styles = {
     borderRadius: '10px',
     cursor: 'pointer',
     transition: 'all 0.2s',
+    minHeight: '48px', // iOS touch target
   },
 };
 
-// Add CSS for spinner animation
+// Add CSS for responsive design and animations
 const styleSheet = document.createElement("style");
 styleSheet.innerText = `
   @keyframes spin {
@@ -424,10 +480,99 @@ styleSheet.innerText = `
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(102, 126, 234, 0.5);
   }
+
+  button:active {
+    transform: translateY(0);
+  }
   
-  @media (max-width: 768px) {
+  /* Tablet and below - hide branding side */
+  @media (max-width: 968px) {
     .brandingSide {
       display: none !important;
+    }
+  }
+
+  /* Mobile styles */
+  @media (max-width: 768px) {
+    /* Show mobile logo */
+    div[style*="mobileLogoContainer"] {
+      display: flex !important;
+    }
+
+    /* Adjust form container padding */
+    div[style*="formContainer"] {
+      padding: 28px 20px !important;
+      border-radius: 12px !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+    }
+
+    /* Adjust form side padding */
+    div[style*="formSide"] {
+      padding: 16px !important;
+    }
+
+    /* Make form titles smaller */
+    h2[style*="formTitle"] {
+      font-size: 22px !important;
+    }
+
+    /* Adjust input padding */
+    input {
+      padding: 13px 13px 13px 42px !important;
+    }
+
+    /* Adjust button sizes */
+    button[type="submit"] {
+      padding: 15px !important;
+      font-size: 15px !important;
+    }
+  }
+
+  /* Small mobile devices */
+  @media (max-width: 480px) {
+    div[style*="formContainer"] {
+      padding: 24px 16px !important;
+    }
+
+    h2[style*="formTitle"] {
+      font-size: 20px !important;
+    }
+
+    h1[style*="mobileBrandTitle"] {
+      font-size: 24px !important;
+    }
+
+    div[style*="mobileLogo"] {
+      width: 50px !important;
+      height: 50px !important;
+    }
+
+    div[style*="mobileLogo"] svg {
+      width: 32px !important;
+      height: 32px !important;
+    }
+  }
+
+  /* Better touch targets for mobile */
+  @media (hover: none) and (pointer: coarse) {
+    button {
+      min-height: 48px;
+      min-width: 48px;
+    }
+  }
+
+  /* Prevent zoom on input focus for iOS */
+  @supports (-webkit-touch-callout: none) {
+    input, textarea, select {
+      font-size: 16px !important;
+    }
+  }
+
+  /* Fix viewport height on mobile browsers */
+  @media (max-width: 768px) {
+    div[style*="formSide"] {
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
     }
   }
 `;
