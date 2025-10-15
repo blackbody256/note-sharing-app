@@ -91,6 +91,5 @@ This project was created as an assignment and is available for educational purpo
 
 ---
 
-**Author:** [Your Name]  
-**Assignment:** [Course/Project Name]  
-**Date:** October 2024
+**Author:** Akanga Andrew  
+**Date:** October 15th, 2025
